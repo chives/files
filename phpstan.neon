@@ -36,3 +36,9 @@ parameters:
         -
             message: '#Method Tests\\FSi\\Module\\UploadModule::grabClient\(\) return type with generic class Symfony\\Component\\BrowserKit\\AbstractBrowser does not specify its types: TRequest, TResponse#'
             path: '%currentWorkingDirectory%/tests/_support/Module/UploadModule'
+        -
+            message: '#(unknown class |invalid type )?Doctrine\\ORM\\Mapping\\EmbeddedClassMapping( not found)?#'
+            path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/EntityFileSubscriber.php'
+        -
+            message: '#(Result of && is always false\.|Strict comparison using === between true and false will always evaluate to false\.)#'
+            path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/EntityFileSubscriber.php'

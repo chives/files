@@ -63,8 +63,8 @@ final class FilePropertyConfigurationResolver
         ) {
             throw new RuntimeException(sprintf(
                 'There is no file configuration for property "%s" of entity class "%s"',
-                $entityClass,
-                $filePropertyName
+                $filePropertyName,
+                $entityClass
             ));
         }
 

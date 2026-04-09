@@ -15,6 +15,7 @@ use ArrayAccess;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\ORM\Event\PreFlushEventArgs;
 use Doctrine\ORM\Mapping\ClassMetadata as ORMClassMetadata;
+use Doctrine\ORM\Mapping\EmbeddedClassMapping;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
@@ -25,6 +26,7 @@ use FSi\Component\Files\Entity\FileUpdater;
 
 use function array_walk;
 use function get_class;
+use function is_array;
 use function method_exists;
 
 final class EntityFileSubscriber
@@ -128,7 +130,7 @@ final class EntityFileSubscriber
         array_walk(
             $metadata->embeddedClasses,
             function (
-                array|ArrayAccess $configuration,
+                EmbeddedClassMapping|array $embeddedClassMapping,
                 string $property,
                 callable $callable
             ) use (
@@ -136,7 +138,22 @@ final class EntityFileSubscriber
                 $manager,
                 $metadata
             ): void {
-                if (null !== $configuration['declaredField'] || null !== $configuration['originalField']) {
+                if (
+                    true === $embeddedClassMapping instanceof EmbeddedClassMapping
+                    && (
+                        null !== $embeddedClassMapping->declaredField
+                        || null !== $embeddedClassMapping->originalField
+                    )
+                ) {
+                    return;
+                }
+                if (
+                    true === is_array($embeddedClassMapping)
+                    && (
+                        null !== $embeddedClassMapping['declaredField']
+                        || null !== $embeddedClassMapping['originalField']
+                    )
+                ) {
                     return;
                 }
 
