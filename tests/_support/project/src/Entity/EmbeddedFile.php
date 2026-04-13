@@ -26,7 +26,7 @@ class EmbeddedFile
     public $filePath;
 
     /**
-     * @var TwiceEmbeddedFile
+     * @var TwiceEmbeddedFile|null
      */
     public $embeddedFile;
 }

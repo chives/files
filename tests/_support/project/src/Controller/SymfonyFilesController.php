@@ -75,10 +75,12 @@ final class SymfonyFilesController
         );
     }
 
+    /**
+     * @param FormErrorIterator<FormError> $errors
+     */
     private function formErrorsToMessage(FormErrorIterator $errors): string
     {
         $message = '';
-        /** @var FormError $error */
         foreach ($errors as $error) {
             /** @var FormInterface<FormInterface> $origin */
             $origin = $error->getOrigin();

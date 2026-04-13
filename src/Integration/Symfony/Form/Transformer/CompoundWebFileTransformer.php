@@ -29,7 +29,10 @@ final class CompoundWebFileTransformer implements DataTransformerInterface
         $this->fileField = $fileField;
     }
 
-    public function transform(mixed $value): mixed
+    /**
+     * @return array<mixed>
+     */
+    public function transform(mixed $value): array
     {
         if (null === $value) {
             return [];

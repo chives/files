@@ -39,7 +39,7 @@ final class DbModule extends Module
         /** @var EntityManagerInterface $manager */
         $manager = $symfony->_getEntityManager();
 
-        (new SchemaTool($manager))->createSchema($manager->getMetadataFactory()->getAllMetadata());
+        (new SchemaTool($manager))->createSchema(array_values($manager->getMetadataFactory()->getAllMetadata()));
     }
 
     /**

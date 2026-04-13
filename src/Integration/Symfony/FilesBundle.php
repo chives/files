@@ -58,7 +58,7 @@ final class FilesBundle extends Bundle
         }
     }
 
-    public function getContainerExtension(): ?ExtensionInterface
+    public function getContainerExtension(): ExtensionInterface
     {
         if (false === $this->extension instanceof FilesExtension) {
             $this->extension = new FilesExtension();

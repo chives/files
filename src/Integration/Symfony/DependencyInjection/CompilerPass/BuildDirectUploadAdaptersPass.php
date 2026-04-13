@@ -42,7 +42,6 @@ final class BuildDirectUploadAdaptersPass implements CompilerPassInterface
         $flySystemExtension = $container->getExtension('oneup_flysystem');
         Assertion::isInstanceOf($flySystemExtension, OneupFlysystemExtension::class);
         $flySystemConfiguration = $flySystemExtension->getConfiguration($flySystemConfigs, $container);
-        Assertion::isInstanceOf($flySystemConfiguration, FlySystemConfiguration::class);
         $flySystemConfig = $processor->processConfiguration($flySystemConfiguration, $flySystemConfigs);
 
         $filesConfigs = $container->getExtensionConfig('fsi_files');

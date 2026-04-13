@@ -68,7 +68,6 @@ final class FileRemoverTest extends TestCase
                 return match ($matcher->numberOfInvocations()) {
                     1, 3, 4, 5 => true,
                     2, 6 => false,
-                    default => $this->fail('Unexpected invocation'),
                 };
             })
         ;

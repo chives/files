@@ -148,11 +148,8 @@ final class EntityFileSubscriber
                     return;
                 }
                 if (
-                    true === is_array($embeddedClassMapping)
-                    && (
-                        null !== $embeddedClassMapping['declaredField']
-                        || null !== $embeddedClassMapping['originalField']
-                    )
+                    null !== $embeddedClassMapping['declaredField']
+                    || null !== $embeddedClassMapping['originalField']
                 ) {
                     return;
                 }

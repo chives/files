@@ -173,10 +173,10 @@ final class UploadModule extends Module
     private function decodeParamsResponse(string $response): array
     {
         /** @var array{
-         *     url: string,
-         *     key: string,
-         *     publicUrl: string|null,
-         *     headers: array<string, string>
+         *     url?: string,
+         *     key?: string,
+         *     publicUrl?: string|null,
+         *     headers?: array<string, string>
          * } $responseData */
         $responseData = json_decode($response, true, 512, JSON_THROW_ON_ERROR);
         Assert::assertArrayHasKey('url', $responseData);
