@@ -142,7 +142,7 @@ class UploadedWebFileValidator extends ConstraintValidator
             $sizeAsString = (string) round($size / $coef, 2);
         }
 
-        return [$sizeAsString, $limitAsString, self::$suffices[$coef]];
+        return [$sizeAsString, $limitAsString, self::$suffices[(int) $coef]];
     }
 
     private function validateUploadedWebFile(Files\UploadedWebFile $value, UploadedWebFile $constraint): void

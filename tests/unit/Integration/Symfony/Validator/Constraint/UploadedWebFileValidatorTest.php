@@ -370,9 +370,6 @@ final class UploadedWebFileValidatorTest extends Unit
         // access FileValidator::factorizeSizes() private method to format max file size
         $reflection = new ReflectionClass(UploadedWebFileValidator::class);
         $method = $reflection->getMethod('factorizeSizes');
-        if (PHP_VERSION_ID < 80500) {
-            $method->setAccessible(true);
-        }
         [, $limit, $suffix] = $method->invokeArgs(
             new UploadedWebFileValidator($this->createMock(Files\FileManager::class)),
             [0, UploadedFile::getMaxFilesize(), false]

@@ -117,7 +117,12 @@ final class DirectUploadController
         $this->getAdapter($dto)->complete(
             $dto->getUploadId(),
             $dto->getKey(),
-            array_map(static fn(array $partData): Part => Part::fromArray($partData), $dto->body['parts'] ?? [])
+            array_values(
+                array_map(
+                    static fn(array $partData): Part => Part::fromArray($partData),
+                    $dto->body['parts'] ?? []
+                )
+            )
         );
 
         return $this->createJsonResponse([]);

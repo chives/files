@@ -4,6 +4,7 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
 parameters:
     reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
     bootstrapFiles:
         - '%currentWorkingDirectory%/vendor/codeception/codeception/autoload.php'
     level: 8
@@ -19,6 +20,9 @@ parameters:
         - '%currentWorkingDirectory%/tests/unit/FileUnionPropertyConfigurationTest.php'
     ignoreErrors:
         -
+            message: '#Parameter \#3 \$headers of class FSi\\Component\\Files\\DirectUpload\\Controller\\Response\\Params constructor expects array\<string, list\<string\>\|string\>, array\<array\<string\>\> given\.#'
+            path: '%currentWorkingDirectory%/src/Integration/FlySystem/DirectUpload/S3Adapter.php'
+        -
             message: '#Strict comparison using === between null and string will always evaluate to false\.#'
             path: '%currentWorkingDirectory%/src/Integration/Symfony/Form/Transformer/SymfonyFileToWebFileTransformer.php'
         -
@@ -33,6 +37,18 @@ parameters:
         -
             message: '#PHPDoc tag \@param for parameter \$event contains generic type Doctrine\\Persistence\\Event\\LifecycleEventArgs<Doctrine\\Persistence\\ObjectManager> but class Doctrine\\Persistence\\Event\\LifecycleEventArgs is not generic\.#'
             path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/EntityFileSubscriber.php'
+        -
+            message: '#(unknown class |invalid type )?Doctrine\\ORM\\Mapping\\EmbeddedClassMapping( not found)?#'
+            path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/EntityFileSubscriber.php'
+        -
+            message: '#(Result of && is always false\.|Strict comparison using === between true and false will always evaluate to false\.)#'
+            path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/EntityFileSubscriber.php'
+        -
+            message: '#(Result of && is always false\.|Strict comparison using === between true and true will always evaluate to true\.)#'
+            path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/EntityFileSubscriber.php'
+        -
+            identifier: 'trait.unused'
+            path: '%currentWorkingDirectory%/src/Integration/Doctrine/ORM/ProxyTrait.php'
         -
             message: '#Method Tests\\FSi\\Module\\UploadModule::grabClient\(\) return type with generic class Symfony\\Component\\BrowserKit\\AbstractBrowser does not specify its types: TRequest, TResponse#'
             path: '%currentWorkingDirectory%/tests/_support/Module/UploadModule'

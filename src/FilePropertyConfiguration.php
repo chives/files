@@ -172,12 +172,7 @@ final class FilePropertyConfiguration
             $checkedClass = $parentClass;
         }
 
-        $propertyReflection = new ReflectionProperty($checkedClass, $property);
-        if (PHP_VERSION_ID < 80500) {
-            $propertyReflection->setAccessible(true);
-        }
-
-        return $propertyReflection;
+        return new ReflectionProperty($checkedClass, $property);
     }
 
     /**

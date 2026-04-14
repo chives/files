@@ -83,7 +83,12 @@ final class S3Adapter implements DirectUploadAdapter
         ]);
         $result = $this->client->execute($cmd);
 
-        return array_map(static fn(array $partData): Part => Part::fromArray($partData), $result->get('Parts'));
+        return array_values(
+            array_map(
+                static fn(array $partData): Part => Part::fromArray($partData),
+                $result->get('Parts')
+            )
+        );
     }
 
     public function part(string $uploadId, string $key, int $number): UriInterface
@@ -145,7 +150,7 @@ final class S3Adapter implements DirectUploadAdapter
     }
 
     /**
-     * @return array<string, string>>
+     * @return array<string, string>
      */
     private function getObjectOptions(string $key): array
     {
